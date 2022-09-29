@@ -1,14 +1,26 @@
-const express = require("express");
+//Resource för Server Sent events: https://masteringjs.io/tutorials/express/server-sent-events
+//Test att försöka bli klar med på Torsdag: Ha en sida som, när du t.ex. trycker en knapp,
+//ändrar någonting på en annan sida.
+
+const app = require("express");
 const app = express();
 const port = 80;
 
-app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     console.log('Connecting to Server')
-    res.render('example')
 }) 
 
+app.get('/events', async function(req, res) {
+    console.log('Connected to /events');
+    res.set({
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'text/event-stream',
+      'Connection': 'keep-alive'
+    });
+});
+
+res.flushHeaders();
 
 
 app.listen(port);
