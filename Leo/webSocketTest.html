@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <input type="text" id="shit">
+    <button onclick="if(websocket.readyState == WebSocket.OPEN) {
+        websocket.send(document.getElementById('shit').value);
+    }">send</button>
+</body>
+<script>
+    const websocket = new WebSocket("ws://localhost:3000");
+</script>

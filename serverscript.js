@@ -2,25 +2,16 @@
 //Test att försöka bli klar med på Torsdag: Ha en sida som, när du t.ex. trycker en knapp,
 //ändrar någonting på en annan sida.
 
-const app = require("express");
+const express = require("express");
 const app = express();
+const ws = require ("ws");
+
 const port = 80;
 
-
 app.get('/', (req, res) => {
-    console.log('Connecting to Server')
-}) 
-
-app.get('/events', async function(req, res) {
-    console.log('Connected to /events');
-    res.set({
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'text/event-stream',
-      'Connection': 'keep-alive'
-    });
+    console.log('Connecting to Server');
+    res.send('Hello World');
 });
-
-res.flushHeaders();
 
 
 app.listen(port);
