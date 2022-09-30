@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const socket = new WebSocket("ws://www.infotavla.te4projekt.se")
+
+    socket.addEventListener('open', function (event) {
+        socket.send('Client Connected!');
+    });
+
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server', event.data);
+    });
+
+    const sendMessage = () => {
+        socket.send('Client response')
+    }
+</script>
+</html>

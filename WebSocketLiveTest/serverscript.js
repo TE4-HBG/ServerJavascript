@@ -1,17 +1,20 @@
 //Resource för Server Sent events: https://masteringjs.io/tutorials/express/server-sent-events
-//Test att försöka bli klar med på Torsdag: Ha en sida som, när du t.ex. trycker en knapp,
-//ändrar någonting på en annan sida.
+
 
 const express = require("express");
 const app = express();
-const ws = require ("ws");
-
+const webSocket = require ("ws");
+const webSocketServer = new webSocket.Server({server});
 const port = 80;
 
-app.get('/', (req, res) => {
-    console.log('Connecting to Server');
-    res.send('Hello World');
-});
+
+ws.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received %s', message);
+  });
+
+  ws.send('something');
+}
 
 
 app.listen(port);
