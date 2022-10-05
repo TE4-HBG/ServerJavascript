@@ -7,10 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    
+    Client1
+    <input type="text" id="input">
+    <button onclick="sendMessage()">Value</button>
 </body>
 <script>
-    const socket = new WebSocket("ws://www.infotavla.te4projekt.se")
+    //creating a new websocket automatically creates a websocket connection to
+    //The specified URL.
+    socket = new WebSocket("ws://213.188.154.113:80")
 
     socket.addEventListener('open', function (event) {
         socket.send('Client Connected!');
@@ -21,7 +25,9 @@
     });
 
     const sendMessage = () => {
-        socket.send('Client response')
+	if(socket.readyState = WebSocket.OPEN) {
+            socket.send(document.getElementById('input').value);
+        }
     }
 </script>
 </html>
